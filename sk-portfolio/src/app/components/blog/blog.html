@@ -1,0 +1,30 @@
+<section id="blog" class="blog-section">
+  <div class="container">
+    <h2 class="section-title">From the Blog</h2>
+    <div class="blog-grid">
+
+      <div class="blog-card" *ngFor="let blog of blogs" appAnimateOnScroll>
+        
+        <img [attr.data-src]="blog?.image_url?.startsWith('http') ? blog?.image_url : backendUrl + blog?.image_url" appLazyLoad [alt]="blog?.title" class="blog-image">
+        
+        <div class="blog-content">
+          <div class="blog-meta">
+            <p class="blog-category">Article</p> 
+            <p class="blog-date">{{ blog?.created_at | date: 'longDate' }}</p>
+          </div>
+          <h3 class="blog-title">{{ blog?.title }}</h3>
+          <p class="blog-excerpt">{{ blog?.excerpt }}</p>
+          <div class="blog-footer">
+            <span class="blog-author">Shakil Ahmed</span>
+            <a [routerLink]="['/blog', blog?.slug]" class="read-more">Read More &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!blogs || blogs.length === 0">
+        <p>No blog posts found.</p>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,84 @@
+<section id="reviews" class="review-section">
+  <div class="container">
+    <h2 class="section-title">What People Say</h2>
+
+    <div class="review-stats">
+      <div class="stat-item">
+        <div class="stat-value">{{ averageRating | number:'1.1-1' }}</div>
+        <div class="stat-label">Average Rating</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">{{ totalReviews }}</div>
+        <div class="stat-label">Total Reviews</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">95%</div>
+        <div class="stat-label">Projects Completed</div>
+        <div class="progress-bar-container">
+          <div class="progress-bar" style="width: 95%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-grid">
+      <div class="review-card" *ngFor="let review of reviews" appAnimateOnScroll>
+        <div class="review-header">
+          <div class="review-stars">
+            <ng-container *ngFor="let i of [].constructor(review.rating)">
+              <svg viewBox="0 0 24 24" class="star-icon"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z" /></svg>
+            </ng-container>
+          </div>
+          <p class="review-date">{{ review.created_at | date: 'longDate' }}</p>
+        </div>
+        <p class="review-text">"{{ review.comment }}"</p>
+        <div class="review-author">
+          <div class="author-details">
+            <p class="author-name">{{ review.name }}</p>
+            <p class="author-title">{{ review.position }}{{ review.company ? ', ' + review.company : '' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-form-container">
+      <h3 class="form-title">Leave a Review</h3>
+      
+      <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+      <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+      <form class="review-form" [formGroup]="reviewForm" (ngSubmit)="onReviewSubmit()">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Your Name <span class="required">*</span></label>
+            <input type="text" id="name" formControlName="name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="position">Position (Optional)</label>
+            <input type="text" id="position" formControlName="position">
+          </div>
+          <div class="form-group">
+            <label for="company">Company (Optional)</label>
+            <input type="text" id="company" formControlName="company">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your Rating <span class="required">*</span></label>
+          <div class="rating-group">
+            <input type="radio" id="star5" formControlName="rating" value="5" /><label for="star5" class="star-label"></label>
+            <input type="radio" id="star4" formControlName="rating" value="4" /><label for="star4" class="star-label"></label>
+            <input type="radio" id="star3" formControlName="rating" value="3" /><label for="star3" class="star-label"></label>
+            <input type="radio" id="star2" formControlName="rating" value="2" /><label for="star2" class="star-label"></label>
+            <input type="radio" id="star1" formControlName="rating" value="1" /><label for="star1" class="star-label"></label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="review-text">Your Review <span class="required">*</span></label>
+          <textarea id="review-text" formControlName="comment" rows="5"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Submit Review</button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+<header class="admin-header">
+  <!-- Mobile: Hamburger -->
+  <ng-container *ngIf="isMobile">
+    <button class="sidebar-toggle-btn" (click)="toggleSidebar()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/>
+      </svg>
+    </button>
+  </ng-container>
+
+  <div *ngIf="!isMobile" class="header-spacer"></div>
+
+  <!-- Mobile: Profile Dropdown -->
+  <ng-container *ngIf="isMobile">
+    <div class="profile-dropdown">
+      <button (click)="toggleDropdown()" class="profile-toggle">
+        <img src="images/profile-photo.jpg" alt="Profile" class="profile-avatar">
+        <span class="profile-name">Shakil Ahmed</span>
+        <!-- <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/>
+        </svg> -->
+      </button>
+      <div *ngIf="isDropdownOpen" class="dropdown-menu">
+        <a class="dropdown-item" routerLink="/">View Public Site</a>
+        <a class="dropdown-item" (click)="logout()">Logout</a>
+      </div>
+    </div>
+  </ng-container>
+</header>

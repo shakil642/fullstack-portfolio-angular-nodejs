@@ -1,0 +1,46 @@
+<section id="contact" class="contact-section">
+  <div class="container">
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="section-subtitle">Have a question or want to work together? Leave a message!</p>
+
+    <div class="review-form-container">
+      <form class="contact-form" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <h3 class="form-title">Send a Message</h3>
+
+        <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+        
+        <div class="form-group">
+          <label for="name">Your Name<span class="required">*</span></label>
+          <input type="text" id="name" formControlName="name" placeholder="Enter your name">
+          <div *ngIf="name?.invalid && name?.touched" class="error-message">
+            <small *ngIf="name?.errors?.['required']">Name is required.</small>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Your Email<span class="required">*</span></label>
+          <input type="email" id="email" formControlName="email" placeholder="Enter your email address">
+          <div *ngIf="email?.invalid && email?.touched" class="error-message">
+            <small *ngIf="email?.errors?.['required']">Email is required.</small>
+            <small *ngIf="email?.errors?.['email']">Please enter a valid email format.</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message<span class="required">*</span></label>
+          <textarea id="message" formControlName="message" rows="6" placeholder="Write your message here..."></textarea>
+          <div *ngIf="message?.invalid && message?.touched" class="error-message">
+            <small *ngIf="message?.errors?.['required']">A message is required.</small>
+            <small *ngIf="message?.errors?.['minlength']">Message must be at least 10 characters long.</small>
+          </div>
+        </div>
+        
+        <button type="submit" class="submit-btn" [disabled]="isLoading">
+            <span *ngIf="!isLoading">Send Message</span>
+            <div *ngIf="isLoading" class="spinner"></div>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

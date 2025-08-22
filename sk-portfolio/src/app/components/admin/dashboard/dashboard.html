@@ -1,0 +1,528 @@
+<header class="content-header">
+  <h1>{{ currentView | titlecase }}</h1>
+  <p class="text-muted">Welcome back, Shakil!</p>
+</header>
+
+<div [ngSwitch]="currentView">
+ <div *ngSwitchCase="'overview'">
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <a (click)="changeView('projects')" class="stat-card card shadow-sm h-100 text-decoration-none">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title">Total Projects</h5>
+              <div class="icon-circle bg-primary text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2M18 20H6V4H13V9H18V20Z"/></svg>
+              </div>
+            </div>
+            <p class="stat-value mt-auto" [appCountUp]="dashboardStats?.totalProjects || 0"></p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <a (click)="changeView('blogs')" class="stat-card card shadow-sm h-100 text-decoration-none">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title">Published Blogs</h5>
+              <div class="icon-circle bg-success text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20,11H4V4H20M20,13H4V20H20V13M19,2H5C3.89,2 3,2.89 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4C21,2.89 20.1,2 19,2Z"/></svg>
+              </div>
+            </div>
+            <p class="stat-value mt-auto" [appCountUp]="dashboardStats?.totalBlogs || 0"></p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <a (click)="changeView('reviews')" class="stat-card card shadow-sm h-100 text-decoration-none">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title">Total Reviews</h5>
+              <div class="icon-circle bg-warning text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+              </div>
+            </div>
+            <p class="stat-value mt-auto" [appCountUp]="dashboardStats?.totalReviews || 0"></p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-lg-3 col-md-6">
+        <a (click)="changeView('messages')" class="stat-card card shadow-sm h-100 text-decoration-none">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title">Total Messages</h5>
+              <div class="icon-circle bg-danger text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2Z"/></svg>
+              </div>
+            </div>
+            <p class="stat-value mt-auto" [appCountUp]="dashboardStats?.totalMessages || 0"></p>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="card shadow-sm mt-4">
+      <div class="card-header bg-light">
+          <h2 class="h5 mb-0">Projects by Technology</h2>
+      </div>
+      <div class="card-body">
+        <div class="chart-container">
+          <canvas baseChart
+              [data]="barChartData"
+              [options]="barChartOptions"
+              [type]="barChartType">
+          </canvas>
+        </div>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="stat-card card shadow-sm h-100 text-decoration-none">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title">Site Visits</h5>
+              <div class="icon-circle bg-info text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"/></svg>
+              </div>
+            </div>
+            <p class="stat-value mt-auto" [appCountUp]="dashboardStats?.totalVisits || 0"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card stat-card h-100">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title">Top Skill</h5>
+              <div class="icon-circle bg-danger text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A9,9 0 0,0 3,11V22L6,19L9,22L12,19L15,22L18,19L21,22V11A9,9 0 0,0 12,2M9,12A1.5,1.5 0 0,1 7.5,10.5A1.5,1.5 0 0,1 9,9A1.5,1.5 0 0,1 10.5,10.5A1.5,1.5 0 0,1 9,12M15,12A1.5,1.5 0 0,1 13.5,10.5A1.5,1.5 0 0,1 15,9A1.5,1.5 0 0,1 16.5,10.5A1.5,1.5 0 0,1 15,12Z"/></svg>
+              </div>
+            </div>
+            <p class="stat-value mt-auto">{{ topSkill }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card stat-card h-100">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title">Engagement</h5>
+              <div class="icon-circle bg-success text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M23,10C23,8.89 22.1,8 21,8H14.68L15.64,3.43C15.66,3.33 15.67,3.22 15.67,3.11C15.67,2.7 15.5,2.32 15.23,2.05L14.17,1L7.59,7.58C7.22,7.95 7,8.45 7,9V19A2,2 0 0,0 9,21H18C18.83,21 19.54,20.5 19.84,19.78L22.86,12.73C22.95,12.5 23,12.26 23,12V10M1,21H5V9H1V21Z"/></svg>
+              </div>
+            </div>
+            <p class="stat-value mt-auto">{{ approvalRate }}%</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="card stat-card h-100">
+          <div class="card-body d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start">
+              <h5 class="card-title">Busiest Month</h5>
+              <div class="icon-circle bg-primary text-white">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19,19H5V8H19M16,1V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3H18V1M17,12H12V17H17V12Z"/></svg>
+              </div>
+            </div>
+            <p class="stat-value mt-auto">{{ busiestMonth }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <div class="card shadow-sm mt-4">
+  <div class="card-header bg-light">
+    <h2 class="h5 mb-0">Recent Activity</h2>
+  </div>
+  <div class="card-body activity-container">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let key of getActivityKeys()">
+        <div class="activity-group">
+          <h6 class="activity-group-title">{{ key }}</h6>
+          <ul class="activity-feed">
+            <li *ngFor="let item of groupedActivity[key]" class="activity-item">
+              <div class="activity-icon" [ngClass]="item.type.toLowerCase()">
+                <span>{{ item.text.charAt(0) }}</span>
+              </div>
+              <div class="activity-content">
+                <p class="activity-text">{{ item.text }}</p>
+                <small class="activity-time text-muted">
+                  {{ item.created_at | date:'short' }}
+                </small>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="getActivityKeys().length === 0" class="text-muted text-center p-3">
+      No recent activity.
+    </div>
+  </div>
+</div>
+  </div>
+
+  <div *ngSwitchCase="'projects'">
+    <div class="card shadow-sm">
+      <div class="card-header bg-light d-flex justify-content-between align-items-center">
+        <h2 class="h5 mb-0">Manage Projects</h2>
+        <button (click)="openAddProjectModal()" class="btn btn-primary btn-sm">Add New Project</button>
+      </div>
+      <div class="notification-container">
+        <div *ngIf="projectSuccessMessage" class="alert alert-success">{{ projectSuccessMessage }}</div>
+        <div *ngIf="projectApiError" class="alert alert-danger">{{ projectApiError }}</div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover table-striped mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Description</th>
+              <th scope="col" class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let project of projects">
+              <td data-label="Title" class="fw-medium">{{ project.title }}</td>
+              <td data-label="Description">{{ project.description | slice:0:100 }}...</td>
+              <td data-label="Actions" class="text-end">
+                <button (click)="openEditProjectModal(project)" class="btn btn-secondary btn-sm me-2">Edit</button>
+                <button (click)="promptDeleteProject(project.id)" class="btn btn-danger btn-sm">Delete</button>
+              </td>
+            </tr>
+            <tr *ngIf="projects.length === 0">
+              <td colspan="3" class="text-center text-muted py-4">No projects found.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'skills'">
+    <div class="card shadow-sm">
+      <div class="card-header bg-light">
+        <h2 class="h5 mb-0">Manage Skills</h2>
+      </div>
+      <div class="notification-container">
+        <div *ngIf="skillSuccessMessage" class="alert alert-success">{{ skillSuccessMessage }}</div>
+        <div *ngIf="skillApiError" class="alert alert-danger">{{ skillApiError }}</div>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="skillsForm" (ngSubmit)="onSkillsSubmit()">
+          <p class="text-muted">Enter one skill per line in the appropriate category.</p>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <label class="form-label">Programming & Frameworks</label>
+              <textarea formControlName="Programming & Frameworks" rows="10" class="form-control"></textarea>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Databases</label>
+              <textarea formControlName="Databases" rows="10" class="form-control"></textarea>
+            </div>
+            <div class="col-md-4">
+              <label class="form-label">Tools & Methods</label>
+              <textarea formControlName="Tools & Methods" rows="10" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="mt-3 text-end">
+            <button type="submit" class="btn btn-success">Save Skills</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'blogs'">
+    <div class="card shadow-sm">
+      <div class="card-header bg-light d-flex justify-content-between align-items-center">
+        <h2 class="h5 mb-0">Manage Blogs</h2>
+        <button (click)="openAddBlogModal()" class="btn btn-primary btn-sm">Create New Post</button>
+      </div>
+      <div class="notification-container">
+        <div *ngIf="blogSuccessMessage" class="alert alert-success">{{ blogSuccessMessage }}</div>
+        <div *ngIf="blogApiError" class="alert alert-danger">{{ blogApiError }}</div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover table-striped mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Title</th>
+              <th scope="col">Status</th>
+              <th scope="col" class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let blog of blogsForAdmin">
+              <td data-label="Title">{{ blog?.title }}</td>
+              <td data-label="Status">
+                <span class="badge" [class.bg-success]="blog?.is_published" [class.bg-secondary]="!blog?.is_published">
+                  {{ blog?.is_published ? 'Published' : 'Draft' }}
+                </span>
+              </td>
+              <td data-label="Actions" class="text-end">
+                <button (click)="openEditBlogModal(blog)" class="btn btn-secondary btn-sm me-2">Edit</button>
+                <button (click)="promptDeleteBlog(blog.id)" class="btn btn-danger btn-sm">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>  
+  </div>
+
+  <div *ngSwitchCase="'reviews'">
+    <div class="card shadow-sm">
+      <div class="card-header bg-light">
+        <h2 class="h5 mb-0">Manage Reviews</h2>
+      </div>
+      <div class="notification-container">
+        <div *ngIf="reviewSuccessMessage" class="alert alert-success">{{ reviewSuccessMessage }}</div>
+        <div *ngIf="reviewApiError" class="alert alert-danger">{{ reviewApiError }}</div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover table-striped mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Author</th>
+              <th scope="col">Rating</th>
+              <th scope="col">Comment</th>
+              <th scope="col">Status</th>
+              <th scope="col" class="text-end">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let review of reviewsForAdmin">
+              <td data-label="Author">{{ review.name }}</td>
+              <td data-label="Rating">{{ review.rating }} ★</td>
+              <td data-label="Comment">{{ review.comment | slice:0:100 }}...</td>
+              <td data-label="Status">
+                <span class="badge" [class.bg-success]="review.is_approved" [class.bg-warning]="!review.is_approved">
+                  {{ review.is_approved ? 'Approved' : 'Pending' }}
+                </span>
+              </td>
+              <td data-label="Actions" class="text-end">
+                <button *ngIf="!review.is_approved" (click)="approveReview(review.id)" class="btn btn-success btn-sm me-2">Approve</button>
+                <button (click)="promptDeleteReview(review.id)" class="btn btn-danger btn-sm">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div *ngSwitchCase="'messages'">
+    <div class="card shadow-sm">
+      <div class="card-header bg-light">
+        <h2 class="h5 mb-0">Manage Messages</h2>
+      </div>
+      <div class="notification-container">
+        <div *ngIf="messageSuccessMessage" class="alert alert-success">{{ messageSuccessMessage }}</div>
+        <div *ngIf="messageApiError" class="alert alert-danger">{{ messageApiError }}</div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover table-striped mb-0 messages-table">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Message</th>
+                <th scope="col">Received</th>
+                <th scope="col">Status</th>
+                <th scope="col" class="text-end">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let msg of messagesForAdmin">
+                <td data-label="Name">
+                  {{ msg.name }}
+                </td>
+
+                <td data-label="Email">
+                  <a href="#" (click)="openEmail(msg.email, $event)" class="person-email">
+                    {{ msg.email }}
+                  </a>
+                </td>
+                <td data-label="Message">{{ msg.message | slice:0:80 }}...</td>
+                <td data-label="Received">{{ msg.received_at | date:'short' }}</td>
+                <td data-label="Status">
+                  <span class="badge" [class.bg-success]="msg.is_read" [class.bg-warning]="!msg.is_read">
+                    {{ msg.is_read ? 'Read' : 'Unread' }}
+                  </span>
+                </td>
+                <td data-label="Actions" class="text-end">
+                  <button (click)="toggleMessageRead(msg.id)" class="btn btn-secondary btn-sm me-2">{{ msg.is_read ? 'Unread' : 'Read' }}</button>
+                  <button (click)="promptDeleteMessage(msg.id)" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>  
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showProjectModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>{{ editingProjectId ? 'Edit Project' : 'Add New Project' }}</h3>
+      <button (click)="closeProjectModal()" class="close-btn">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="projectForm" (ngSubmit)="onProjectFormSubmit()">
+        <div class="form-group">
+          <label class="form-label">Title</label>
+          <input type="text" formControlName="title" class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea formControlName="description" rows="4" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tags (comma-separated)</label>
+          <input type="text" formControlName="tags" class="form-control" placeholder="e.g., Angular,Node.js,SCSS">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Project Image</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="optionUrl" value="url" formControlName="upload_option">
+            <label class="form-check-label" for="optionUrl">Use Image URL / Path</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="optionUpload" value="upload" formControlName="upload_option">
+            <label class="form-check-label" for="optionUpload">Upload New Image</label>
+          </div>
+        </div>
+        <div *ngIf="projectForm.value.upload_option === 'url'" class="form-group">
+          <label class="form-label">Image URL / Path</label>
+          <input type="text" formControlName="image_url" class="form-control" placeholder="/uploads/your-image.png">
+        </div>
+        <div *ngIf="projectForm.value.upload_option === 'upload'" class="form-group">
+          <label class="form-label">Image File</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)">
+        </div>
+        <div class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">GitHub Link</label>
+            <input type="text" formControlName="github_link" class="form-control">
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">Live Link</label>
+            <input type="text" formControlName="live_link" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="closeProjectModal()" class="btn btn-light">Cancel</button>
+          <button type="submit" [disabled]="projectForm.invalid" class="btn btn-primary">
+            {{ editingProjectId ? 'Update Project' : 'Save Project' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-modal 
+  [isVisible]="showDeleteModal"
+  title="Delete Project"
+  message="Are you sure you want to permanently delete this project? This action cannot be undone."
+  confirmButtonText="Yes, Delete"
+  (confirmed)="handleDeleteConfirmation($event)">
+</app-modal>
+
+<div *ngIf="showBlogModal" class="modal-overlay">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3>{{ editingBlogId ? 'Edit Blog Post' : 'Create New Post' }}</h3>
+      <button (click)="closeBlogModal()" class="close-btn">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="blogForm" (ngSubmit)="onBlogFormSubmit()">
+        <div class="form-group">
+          <label class="form-label">Title</label>
+          <input type="text" formControlName="title" class="form-control">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Excerpt (Short Summary)</label>
+          <textarea formControlName="excerpt" rows="3" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Main Content (HTML supported)</label>
+          <editor
+            formControlName="content"
+            apiKey = "i7es49qstwibqvsfdkrmsdgu5rklaeuwobu871y0o6bzuvzp"
+            [init]="{
+              height: 400,
+              menubar: false,
+              plugins: [
+                'advlist', 'autolink', 'lists', 'link', 'image', 'charmap',
+                'preview', 'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                'insertdatetime', 'media', 'table', 'help', 'wordcount'
+              ],
+              toolbar: 'undo redo | formatselect | ' +
+              'bold italic backcolor | alignleft aligncenter ' +
+              'alignright alignjustify | bullist numlist outdent indent | ' +
+              'removeformat | help'
+            }">
+          </editor>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Blog Image</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="optionUrl" value="url" formControlName="upload_option">
+            <label class="form-check-label" for="optionUrl">Use Image URL / Path</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" id="optionUpload" value="upload" formControlName="upload_option">
+            <label class="form-check-label" for="optionUpload">Upload New Image</label>
+          </div>
+        </div>
+        <div *ngIf="blogForm.value.upload_option === 'url'" class="form-group">
+          <label class="form-label">Image URL / Path</label>
+          <input type="text" formControlName="image_url" class="form-control" placeholder="/uploads/your-image.png">
+        </div>
+        <div *ngIf="blogForm.value.upload_option === 'upload'" class="form-group">
+          <label class="form-label">Image File</label>
+          <input type="file" class="form-control" (change)="onFileSelected($event)">
+        </div>
+        <div class="form-check form-switch my-3">
+          <input class="form-check-input" type="checkbox" id="is_published" formControlName="is_published">
+          <label class="form-check-label" for="is_published">Publish this post</label>
+        </div>
+        <div class="modal-footer">
+          <button type="button" (click)="closeBlogModal()" class="btn btn-light">Cancel</button>
+          <button type="submit" [disabled]="blogForm.invalid" class="btn btn-primary">Save Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-modal 
+  [isVisible]="showBlogDeleteModal"
+  title="Delete Blog Post"
+  message="Are you sure you want to permanently delete this post?"
+  confirmButtonText="Yes, Delete"
+  (confirmed)="handleBlogDeleteConfirmation($event)">
+</app-modal>
+
+<app-modal 
+  [isVisible]="showReviewDeleteModal"
+  title="Delete Review"
+  message="Are you sure you want to permanently delete this review?"
+  confirmButtonText="Yes, Delete"
+  (confirmed)="handleReviewDeleteConfirmation($event)">
+</app-modal>
+
+<app-modal 
+  [isVisible]="showMsgDeleteModal"
+  title="Delete Message"
+  message="Are you sure you want to permanently delete this message?"
+  confirmButtonText="Yes, Delete"
+  (confirmed)="handleMessageDeleteConfirmation($event)">
+</app-modal>

@@ -1,0 +1,352 @@
+//-- Theme Variables --//
+@use "sass:color";
+
+$primary-color: #0d6efd;
+$secondary-color: #6c757d;
+$text-color: #212529;
+$bg-light: #f8f9fa;
+$border-color: #dee2e6;
+$card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+$star-color: #ffc107;
+
+.review-section {
+  padding: 5rem 2rem;
+  background-color: $bg-light;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: $primary-color;
+    border-radius: 2px;
+  }
+}
+
+//-- Stats Bar Styles --//
+.review-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+.stat-item {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+}
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: $primary-color;
+}
+.stat-label {
+  color: $secondary-color;
+  font-weight: 500;
+  margin: 0.25rem 0 0 0;
+}
+.progress-bar-container {
+  background-color: #e9ecef;
+  border-radius: 10px;
+  height: 8px;
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+.progress-bar {
+  background-color: $primary-color;
+  height: 100%;
+  border-radius: 10px;
+}
+
+//-- Review Card Styles --//
+.review-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  @media (min-width: 992px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.review-card {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  position: relative;
+  &::before {
+    content: '“';
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    font-size: 8rem;
+    color: #e9ecef;
+    z-index: 0;
+    line-height: 1;
+  }
+}
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+.review-stars { display: flex; gap: 0.25rem; }
+.star-icon { width: 24px; height: 24px; fill: $star-color; }
+.review-date { color: $secondary-color; font-size: 0.9rem; font-weight: 500; }
+.review-text {
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: #495057;
+  margin-bottom: 2rem;
+  position: relative;
+  z-index: 1;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: auto;
+  padding-top: 1.5rem;
+  border-top: 1px solid $border-color;
+  position: relative;
+  z-index: 1;
+}
+.author-photo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+.author-details { line-height: 1.4; }
+.author-name { font-weight: 700; color: $text-color; margin: 0; }
+.author-title { font-size: 0.9rem; color: $secondary-color; margin: 0; }
+
+//-- Review Form Styles --//
+.review-form-container {
+  background-color: white;
+  padding: 2.5rem;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  margin-top: 4rem;
+}
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.form-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1; // Allows groups in a row to share space equally
+
+  label {
+    font-weight: 600;
+    color: #495057;
+  }
+
+ input, textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    border: 1px solid $border-color;
+    font-size: 1rem;
+    box-sizing: border-box;
+    resize: vertical; // ADD THIS LINE
+
+    &:focus {
+      outline: 2px solid $primary-color;
+      border-color: $primary-color;
+    }
+  }
+}
+
+.rating-group {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  input[type="radio"] { display: none; }
+  .star-label {
+    cursor: pointer;
+    &::before {
+      content: '★';
+      font-size: 2rem;
+      color: $border-color;
+    }
+  }
+  input:checked ~ .star-label::before,
+  &:hover input:hover ~ .star-label::before,
+  &:hover input:checked ~ .star-label::before {
+    color: $star-color;
+  }
+}
+.submit-btn {
+  align-self: flex-start;
+  padding: 12px 24px;
+  border: none;
+  background-color: $primary-color;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover { background-color: color.adjust($primary-color, $lightness: -10%); }
+}
+.form-group label .required {
+  color: #dc3545;
+  margin-left: 4px;
+}
+
+/* ------------------------------
+  Responsive tweaks (mobile-first)
+  Paste at the end of contact.css / review.css
+   ------------------------------ */
+
+/* Make wrapper flexible on small screens */
+.review-form-container,
+.contact-form,    /* in some setups contact-form is the card */
+.review-card {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Default smaller container padding on narrow screens */
+@media (max-width: 768px) {
+  .contact-section,
+  .review-section {
+    padding: 2.5rem 1rem; /* reduce vertical & horizontal padding */
+  }
+
+  .container {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .section-title {
+    font-size: 2rem; /* smaller than desktop */
+    margin-bottom: 1.25rem;
+  }
+
+  .form-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  /* Make the card padding smaller so it fits nicely */
+  .review-form-container,
+  .contact-form,
+  .review-form,
+  .review-card {
+    padding: 1.25rem;
+    border-radius: 10px;
+  }
+
+  /* Forms stack naturally on small screens */
+  .form-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  /* Make submit full width and visually consistent */
+  .submit-btn {
+    width: 100%;
+    align-self: stretch;
+    padding: 12px 16px;
+    font-size: 1rem;
+    min-height: 44px;
+  }
+
+  /* Smaller spinner within the button */
+  .spinner {
+    width: 18px;
+    height: 18px;
+    border-width: 2px;
+  }
+
+  /* Review card large quote mark scale down */
+  .review-card::before {
+    font-size: 5.5rem;
+    left: 10px;
+    top: -8px;
+  }
+
+  /* Star size for rating group on smaller screens */
+  .rating-group .star-label::before {
+    font-size: 1.6rem;
+  }
+
+  /* Make alert messages compact */
+  .alert {
+    padding: 0.75rem 0.9rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+  }
+}
+
+/* Extra small phones: tighten spacing more */
+@media (max-width: 480px) {
+  .contact-section,
+  .review-section {
+    padding: 1.75rem 0.75rem;
+  }
+
+  .form-title {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .review-card::before { font-size: 4.5rem; left: 8px; }
+  .rating-group .star-label::before { font-size: 1.4rem; }
+
+  .submit-btn { padding: 10px; font-size: 0.95rem; min-height: 42px; }
+}

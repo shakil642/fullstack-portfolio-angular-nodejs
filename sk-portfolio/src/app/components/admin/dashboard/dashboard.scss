@@ -1,0 +1,276 @@
+// All layout-specific styles have been moved to the admin-layout component.
+// This file should only contain styles for the content INSIDE the dashboard.
+
+.content-header {
+  padding-bottom: 2rem;
+  h1 {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+}
+
+.card {
+  margin-bottom: 2rem;
+}
+
+// Styles for Stat Cards
+.stat-card {
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    background-color: #1e293b; // Use the same dark blue as the sidebar
+    color: #ffffff; // Make default text white
+    cursor: pointer;
+
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #ffffff;
+    }
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+  }
+
+  .card-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #000000;
+    }
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #000000;
+    }
+}
+
+.stat-card .icon-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Notification Banner Styling
+.notification-container {
+  &:not(:empty) {
+    padding: 1rem 1.5rem 0 1.5rem;
+  }
+}
+
+// Mobile styles for the table content
+@media (max-width: 768px) {
+  .table-responsive {
+    border: none;
+  }
+  .table thead {
+    display: none;
+  }
+  .table tr {
+    display: block;
+    border: 1px solid #dee2e6;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
+  }
+  .table td {
+    display: block;
+    text-align: right !important;
+    border-bottom: 1px solid #dee2e6;
+    padding-left: 50%;
+    position: relative;
+    &:last-child {
+      border-bottom: none;
+    }
+    &::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 1rem;
+      font-weight: 600;
+      color: #6c757d;
+      text-align: left;
+    }
+  }
+}
+
+// Modal Styles (for the Add/Edit form)
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+.modal-content {
+  background-color: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #dee2e6;
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+}
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  cursor: pointer;
+  color: #6c757d;
+  line-height: 1;
+  padding: 0;
+}
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+// Final fix for action buttons
+td[data-label="Actions"] {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+}
+@media (max-width: 768px) {
+  .table td[data-label="Actions"] {
+    justify-content: flex-end;
+    padding-right: 1rem;
+  }
+}
+
+// --- NEW STYLES for Horizontal Chart Scrolling ---
+.chart-container {
+  position: relative;
+  height: 180px; 
+  overflow-x: auto; 
+}
+
+canvas {
+  min-width: 600px; 
+}
+
+// --- NEW: Responsive Chart Font Size ---
+@media (max-width: 768px) {
+  // This targets the chart globally within the component
+  canvas {
+    // You can adjust this height for mobile if needed
+    height: 120px !important; 
+  }
+
+   :host ::ng-deep .chart-container canvas {
+    // Chart.js 4 uses CSS variables for font sizes
+    --chart-font-size: 10px;
+  }
+}
+
+// --- UPDATED STYLES for Recent Activity Feed ---
+
+.activity-container {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.activity-group {
+  margin-bottom: 1.5rem;
+  padding: 0 1rem;
+  border-right: 1px solid #dee2e6;
+}
+
+.activity-group-title {
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: #6c757d;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #dee2e6;
+  text-align: center; /* nicer for column headers */
+}
+
+.activity-feed {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-item {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  align-items: flex-start;
+}
+
+.activity-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+  font-weight: 600;
+}
+
+.activity-icon.project { background-color: var(--bs-primary); }
+.activity-icon.blog    { background-color: var(--bs-success); }
+.activity-icon.review  { background-color: #ffc107; }
+.activity-icon.message { background-color: var(--bs-danger); }
+
+.activity-content .activity-text {
+  margin: 0 0 0.25rem 0;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.activity-content .activity-time {
+  font-size: 0.8rem;
+}

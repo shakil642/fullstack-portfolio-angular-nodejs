@@ -1,0 +1,162 @@
+//-- Using the same variables from about.component.scss --//
+$primary-color: #0d6efd;
+$secondary-color: #6c757d;
+$text-color: #212529;
+$bg-light: #f8f9fa;
+$border-color: #dee2e6;
+$card-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+$card-hover-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+.projects-section {
+  padding: 5rem 2rem;
+  background-color: $bg-light;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 4rem;
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: $primary-color;
+    border-radius: 2px;
+  }
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.project-card {
+  background-color: white;
+  border-radius: 12px;
+  border: 1px solid $border-color;
+  box-shadow: $card-shadow;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: $card-hover-shadow;
+  }
+}
+
+.project-image-container {
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid $border-color;
+  overflow: hidden;
+}
+
+.project-initials {
+  font-size: 4rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.project-card:nth-child(1) .project-image-container { background: linear-gradient(45deg, #0d6efd, #0d47a1); }
+.project-card:nth-child(2) .project-image-container { background: linear-gradient(45deg, #198754, #145a32); }
+.project-card:nth-child(3) .project-image-container { background: linear-gradient(45deg, #dc3545, #8f0b18); }
+.project-card:nth-child(4) .project-image-container { background: linear-gradient(45deg, #6c757d, #212529); }
+
+.project-card:hover .project-initials {
+  transform: scale(1.15);
+}
+
+.project-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.project-header-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    color: $secondary-color;
+    transition: color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      color: $primary-color;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.project-description {
+  color: #495057;
+  line-height: 1.6;
+  flex-grow: 1;
+  margin-bottom: 1.5rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem; // Restored margin
+
+  span {
+    background-color: #e9ecef;
+    color: #495057;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+}
+
+// Restored .project-links styles
+.project-links a {
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: 600;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

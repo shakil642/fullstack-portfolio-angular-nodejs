@@ -1,0 +1,226 @@
+// 1. Import the new Sass color module
+@use "sass:color";
+
+// Theme Variables
+$primary-color: #0d6efd;
+$bg-light: #f8f9fa;
+$border-color: #dee2e6;
+$error-color: #dc3545;
+$text-color: #212529;
+$text-muted: #6c757d;
+
+// ... (most styles are the same) ...
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: $bg-light;
+  padding: 2rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 2.5rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  .logo {
+    height: 45px;
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-weight: 600;
+    color: $text-color;
+  }
+  p {
+    color: $text-muted;
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  label {
+    font-weight: 500;
+    color: #495057;
+  }
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+  
+  .input-icon {
+    position: absolute;
+    left: 1rem;
+    width: 20px;
+    height: 20px;
+    color: $text-muted;
+    pointer-events: none;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.85rem 1rem 0.85rem 3rem;
+    border-radius: 8px;
+    border: 1px solid $border-color;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.2);
+    }
+  }
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: $text-muted;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  
+  label {
+    color: $text-muted;
+    cursor: pointer;
+  }
+}
+
+.forgot-password {
+  color: $primary-color;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.submit-btn {
+  padding: 0.85rem;
+  border: none;
+  background-color: $primary-color;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    // FIXED: Use the modern syntax
+    background-color: color.adjust($primary-color, $lightness: -10%);
+  }
+
+  &:disabled {
+    // FIXED: Use the modern syntax
+    background-color: color.adjust($primary-color, $lightness: 20%);
+    cursor: not-allowed;
+  }
+}
+
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.success-message {
+  color: #0f5132;
+  background-color: #d1e7dd;
+  border: 1px solid #badbcc;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.api-error {
+  // FIXED: Use the modern syntax
+  background-color: color.adjust($error-color, $lightness: 35%);
+  color: $error-color;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.validation-error {
+  color: $error-color;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input.is-invalid {
+  border-color: $error-color;
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($error-color, 0.2);
+  }
+}
+
+.form-footer {
+  text-align: right;
+  font-size: 0.9rem;
+  
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

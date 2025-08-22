@@ -1,0 +1,61 @@
+<section id="about" class="about-section">
+  <div class="container">
+    <h2 class="section-title">About Me</h2>
+    
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>Experience</h3>
+        <div class="timeline-item">
+          <h4>Trainee Software Engineer</h4>
+          <p class="item-meta">Bdjobs.com | May 2023 – October 2023</p>
+          <ul>
+            <li>Gained hands-on practice with OOP using C# and the MVC Pattern with ASP.NET.</li>
+            <li>Completed projects using Angular and Classic ASP.</li>
+            <li>Worked on a React project with a NodeJS backend.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="about-card">
+        <h3>Education</h3>
+        <div class="timeline-item">
+          <h4>Professional Masters in IT</h4>
+          <p class="item-meta">Jahangirnagar University | 2023 - 2025 (Ongoing)</p>
+        </div>
+        <details class="expand-education">
+          <summary>View Full Academic History</summary>
+          <div class="hidden-education">
+            <div class="timeline-item">
+              <h4>BSc in CSE</h4>
+              <p class="item-meta">North South University | Graduated September 2022</p>
+            </div>
+            <div class="timeline-item">
+              <h4>HSC (Science)</h4>
+              <p class="item-meta">Mohammadpur Model School & College | 2016</p>
+            </div>
+            <div class="timeline-item">
+              <h4>SSC (Science)</h4>
+              <p class="item-meta">Mohammadpur Model School & College | 2014</p>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div class="about-card skills-card">
+      <h3>Technical Skills</h3>
+      <div class="skills-accordion">
+        
+        <details class="skill-category" *ngFor="let category of getSkillCategories()">
+          <summary>{{ category }}</summary>
+          <ul class="skills-list">
+            <li *ngFor="let skill of skills[category]">
+              {{ skill }}
+            </li>
+          </ul>
+        </details>
+
+      </div>
+    </div>
+
+  </div>
+</section>

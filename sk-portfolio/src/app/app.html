@@ -1,0 +1,13 @@
+<router-outlet *ngIf="isAdminRoute"></router-outlet>
+
+<ng-container *ngIf="!isAdminRoute">
+  <app-navbar></app-navbar>
+
+  <main class="content-container" [@routeAnimations]="getRouteAnimationData()">
+    <router-outlet></router-outlet>
+  </main>
+  
+  <app-footer></app-footer>
+
+  <app-cookie-banner></app-cookie-banner>
+</ng-container>

@@ -1,0 +1,18 @@
+// html, body, app-root {
+//   height: 100%;
+// }
+
+// --- Reusable Fade-in Animation ---
+
+// This is the initial, hidden state of any element we want to animate
+[appAnimateOnScroll] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+// This is the final, visible state that gets applied when the element is scrolled into view
+[appAnimateOnScroll].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}

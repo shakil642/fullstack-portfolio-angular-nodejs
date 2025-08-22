@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+  <div class="container-fluid navbar-container">
+    <a class="navbar-brand fw-bold" href="#">
+      <img src="favicon.png" alt="Site Logo" class="navbar-logo">
+      <span>Shakil Ahmed</span>
+    </a>
+
+    <button type="button" class="navbar-toggler" aria-controls="navbarNav"
+            (click)="isNavbarCollapsed = !isNavbarCollapsed">
+      <span *ngIf="isNavbarCollapsed" class="navbar-toggler-icon"></span>
+      <svg *ngIf="!isNavbarCollapsed" class="close-icon" xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+      </svg>
+    </button>
+
+    <div class="collapse navbar-collapse" [class.show]="!isNavbarCollapsed" id="navbarNav">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <ng-container *ngIf="!isAdminPage">
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#reviews">Reviews</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+        </ng-container>
+
+        <ng-container *ngIf="authService.isLoggedIn()">
+          <li class="nav-item" *ngIf="!isAdminPage">
+            <a class="nav-link btn-admin" routerLink="/admin/dashboard">Dashboard</a>
+          </li>
+
+          <li class="nav-item" *ngIf="isAdminPage">
+            <div class="profile-dropdown">
+              <!-- IMPORTANT: add type="button" and stop propagation -->
+              <button
+                #profileToggle
+                type="button"
+                (click)="toggleDropdown($event)"
+                aria-haspopup="true"
+                [attr.aria-expanded]="isDropdownOpen"
+                class="profile-toggle">
+                <img src="images/profile-photo.jpg" alt="Profile" class="profile-avatar">
+                <span class="profile-name">Shakil Ahmed</span>
+                <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                     fill="currentColor"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
+              </button>
+
+              <!-- Use *ngIf to create/remove the dropdown from the DOM and ensure it's positioned -->
+              <div *ngIf="isDropdownOpen" #dropdownMenu class="dropdown-menu" role="menu" aria-label="Profile menu">
+                <a class="dropdown-item" role="menuitem" routerLink="/">View Public Site</a>
+                <a class="dropdown-item" role="menuitem" (click)="logout()">Logout</a>
+              </div>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</nav>

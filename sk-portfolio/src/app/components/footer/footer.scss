@@ -1,0 +1,129 @@
+@use "sass:color";
+
+$primary-color: #0d6efd;
+$footer-bg: #212529;
+$footer-text: #adb5bd;
+$footer-heading: #ffffff;
+$border-color: #495057;
+
+.site-footer {
+  background-color: $footer-bg;
+  color: $footer-text;
+  padding: 4rem 2rem 2rem 2rem;
+  font-size: 0.95rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  text-align: center;
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid $border-color;
+
+  .footer-heading {
+    margin-bottom: 1rem;
+  }
+  .footer-text {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+}
+
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
+
+.footer-heading {
+  color: $footer-heading;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    margin-bottom: 0.75rem;
+  }
+  a {
+    color: $footer-text;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.contact-info li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 1rem;
+  a {
+    color: $footer-text;
+    transition: color 0.3s ease, transform 0.3s ease;
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+    &:hover {
+      color: $primary-color;
+      transform: translateY(-3px);
+    }
+  }
+}
+
+.footer-bottom {
+  border-top: 1px solid $border-color;
+  padding-top: 2rem;
+  margin-top: 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright-text {
+  margin: 0;
+}
+
+.back-to-top {
+  background-color: $primary-color;
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  &:hover {
+    background-color: color.adjust($primary-color, $lightness: -10%);
+  }
+}
+
+.contact-info svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0; 
+}

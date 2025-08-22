@@ -1,0 +1,93 @@
+/* sidebar.css */
+:host {
+  display: block;   /* make the component host a block-level, stretchable element */
+  height: 100%;     /* inherit the grid cell height (the grid cell gets stretched) */
+  min-height: 0;    /* prevents flex/grid children from overflowing */
+    // --- NEW Dark Theme Variables ---
+  --sidebar-bg: #1e293b; // A professional dark blue
+  --sidebar-text: #cbd5e1; // A light grey for text
+  --sidebar-text-hover: #ffffff; // White for hover
+  --sidebar-active-bg: #334155; // A slightly lighter dark for the active item
+  --primary-color: #38bdf8; // A vibrant light blue for accents
+  --border-color: #334155;
+}
+
+
+.sidebar {
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--sidebar-bg);
+  color: var(--sidebar-text);
+  display: flex;
+  flex-direction: column;
+}
+
+// --- Profile Section Styles ---
+.sidebar-profile {
+  text-align: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  .profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 3px solid var(--border-color);
+  }
+  .profile-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--sidebar-text-hover);
+    margin: 0;
+  }
+  .profile-email {
+    font-size: 0.85rem;
+    margin: 0.25rem 0 0 0;
+  }
+}
+
+// --- Navigation Link Styles ---
+.sidebar-nav {
+  flex-grow: 1;
+  padding: 1rem 0;
+  overflow-y: auto;
+}
+
+.nav-link {
+  display: flex; // Use flexbox for icon and text alignment
+  align-items: center;
+  gap: 1rem; // Space between icon and text
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-weight: 500;
+  border-left: 3px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: none;
+
+  svg {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0; // Prevent icon from shrinking
+  }
+
+  &.active, &:hover {
+    background-color: var(--sidebar-active-bg);
+    color: var(--sidebar-text-hover);
+    border-left-color: var(--primary-color);
+  }
+}
+
+.sidebar-footer {
+  padding: 1rem 0;
+  border-top: 1px solid var(--border-color);
+  flex-shrink: 0;
+}

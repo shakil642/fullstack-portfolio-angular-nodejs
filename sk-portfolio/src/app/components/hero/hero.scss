@@ -1,0 +1,99 @@
+// Professional theme variables for consistency
+@use "sass:color";
+
+$primary-color: #000e23;
+$text-color: #212529;
+$secondary-color: #6c757d;
+$bg-light: #f8f9fa;
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 90vh;
+  text-align: center;
+  padding: 2rem;
+  background-color: $bg-light;
+}
+
+.hero-content {
+  max-width: 800px;
+  position: relative;
+  overflow: visible;
+  z-index: 10; /* ensure popover sits above other elements if needed */
+}
+
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem;
+}
+
+.hero-name {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.hero-objective {
+  font-size: 1.1rem;
+  color: $text-color;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem; // UPDATED: Increased space between buttons
+}
+
+.cta-button {
+  padding: 14px 28px;
+  border: 2px solid $primary-color;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+
+  // Primary Button (Filled)
+  &.primary {
+    background-color: $primary-color;
+    color: white;
+
+    &:hover {
+      background-color: color.adjust($primary-color, $lightness: 100%);
+      border-color: color.adjust($primary-color, $lightness: -8%);
+      color: black;
+      transform: translateY(-3px);
+    }
+  }
+
+  // Secondary Button (Outline)
+  &.secondary {
+    background-color: transparent;
+    color: $primary-color;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white;
+      transform: translateY(-3px);
+    }
+  }
+}
+
+// Add this to the end of the file
+.search-btn {
+  padding: 14px; // Make it square
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}

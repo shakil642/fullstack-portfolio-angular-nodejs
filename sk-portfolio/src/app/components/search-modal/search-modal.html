@@ -1,0 +1,41 @@
+<!-- backdrop covers viewport to catch outside clicks but remains transparent -->
+<div class="modal-backdrop" (click)="closeModal()"></div>
+
+<!-- popover is positioned relative to the hero-content (which is already position: relative) -->
+<div class="modal-popover" (click)="$event.stopPropagation()">
+  <div class="modal-content" role="dialog" aria-modal="true" aria-label="Search Portfolio">
+    <div class="modal-header" style="align-items: flex-start;">
+        <form [formGroup]="searchForm" class="search-bar-with-btn" (ngSubmit)="onSearch()">
+            <input type="search" formControlName="query" placeholder="Search for projects or blogs..." autofocus>
+            <button type="submit" class="search-btn-modal">Search</button>
+        </form>
+        <!-- <button (click)="closeModal()" class="close-btn">&times;</button> -->
+    </div>
+
+
+    <div class="modal-body">
+      <!-- <form [formGroup]="searchForm" class="search-bar">
+        <input type="search" formControlName="query" placeholder="Search for projects or blogs..." autofocus>
+      </form> -->
+
+      <div class="search-results" *ngIf="results$ | async as results">
+        <p *ngIf="results.length > 0" class="results-count">{{ results.length }} results found</p>
+
+        <a
+          *ngFor="let item of results"
+          [routerLink]="item.type === 'blog' ? ['/blog', item.slug] : ['/']"
+          [fragment]="item.type === 'project' ? 'projects' : undefined"
+          (click)="closeModal()"
+          class="result-card">
+
+          <img [src]="item.image_url.startsWith('http') ? item.image_url : backendUrl + item.image_url" [alt]="item.title" class="result-image">
+          <div class="result-content">
+            <span class="result-type">{{ item.type }}</span>
+            <h4 class="result-title">{{ item.title }}</h4>
+            <p class="result-description">{{ item.description }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

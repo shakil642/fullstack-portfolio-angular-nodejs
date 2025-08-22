@@ -1,0 +1,78 @@
+:host {
+  // This is crucial: it forces the layout component to fill the entire browser window.
+  display: block;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.admin-layout {
+  display: grid;
+  // Defines the sidebar width and lets the main content fill the rest.
+  grid-template-columns: 260px 1fr; 
+  height: 100%; // Makes the grid fill the host element.
+  align-items: stretch;   /* explicitly tell grid children to stretch vertically */
+  grid-auto-rows: 1fr;
+  transition: grid-template-columns 0.3s ease-in-out;
+}
+.desktop-sidebar {
+  display: block;
+  height: 100%;           /* helpful backup: ensure the element added to grid fills height */
+}
+
+.main-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  // This makes ONLY the right side scroll if content is too long.
+  overflow-y: auto; 
+  min-width: 0; // Fixes a common content-squishing bug in grid layouts.
+}
+
+.page-content {
+  padding: 2rem;
+  // This is the other key fix: it makes the content area expand to fill all available vertical space.
+  flex-grow: 1; 
+}
+
+.mobile-sidebar-overlay {
+  display: none; // Hidden by default
+}
+
+// --- Responsive Logic ---
+@media (max-width: 991px) {
+  .admin-layout {
+    grid-template-columns: 1fr; // Content takes full width
+  }
+
+  .desktop-sidebar {
+    display: none; // Hide desktop sidebar
+  }
+  
+  .mobile-sidebar-overlay {
+    display: block;
+    position: fixed;
+    inset: 0; /* full screen */
+    background: #fff; /* white sidebar background */
+    z-index: 3000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+    
+    /* Fullscreen sidebar menu */
+    .mobile-sidebar {
+      width: 100%;
+      height: 100vh;
+      padding: 1rem;
+      position: relative;
+      overflow-y: auto;
+    }
+  }
+  
+  // When menu is OPEN
+  .admin-layout.mobile-sidebar-open .mobile-sidebar-overlay {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}

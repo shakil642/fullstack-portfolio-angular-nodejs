@@ -1,0 +1,15 @@
+<div *ngIf="isVisible" class="modal-overlay" (click)="onCancel()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>{{ title }}</h3>
+      <button (click)="onCancel()" class="close-btn">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>{{ message }}</p>
+    </div>
+    <div class="modal-footer">
+      <button (click)="onCancel()" class="btn btn-secondary">Cancel</button>
+      <button (click)="onConfirm()" class="btn btn-danger">{{ confirmButtonText }}</button>
+    </div>
+  </div>
+</div>

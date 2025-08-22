@@ -1,0 +1,21 @@
+<div class="admin-layout" [class.mobile-sidebar-open]="isSidebarOpenOnMobile">
+  <app-sidebar class="desktop-sidebar"></app-sidebar>
+
+  <!-- Mobile Sidebar -->
+  <div class="mobile-sidebar-overlay" *ngIf="isMobile && isSidebarOpenOnMobile" (click)="toggleSidebar()">
+    <div class="mobile-sidebar" (click)="$event.stopPropagation()">
+      <app-sidebar (menuItemClick)="onSidebarItemClick()"></app-sidebar>
+    </div>
+  </div>
+
+  <div class="main-content-wrapper">
+    <app-admin-header 
+      (sidebarToggled)="toggleSidebar()" 
+      [isMobile]="isMobile">
+    </app-admin-header>
+    
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+// Theme variables
+$primary-color: #0d6efd;
+
+// Customizing Bootstrap's look and feel
+.navbar-container {
+  max-width: 1450px;
+  padding: 0 1rem;
+}
+
+// Styles to align logo and text
+.navbar-brand {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem; // Space between logo and text
+}
+
+// Logo image
+.navbar-logo {
+  height: 60px;
+  width: auto;
+}
+
+.nav-link {
+  font-weight: 500;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primary-color !important;
+  }
+}
+
+// Style for the 'X' close icon
+.close-icon {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+/* Parent container for dropdown */
+.profile-dropdown {
+  position: relative;
+}
+
+/* Profile toggle button */
+.profile-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  outline: none;
+
+  &:hover {
+    background-color: #f8f9fa;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
+  }
+}
+
+.profile-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-name {
+  font-weight: 500;
+  color: #212529;
+}
+
+.dropdown-arrow {
+  width: 20px;
+  height: 20px;
+  color: #6c757d;
+}
+
+/* Safety-net to prevent dropdown from disappearing */
+.dropdown-menu {
+  display: block !important; // Always visible if toggled
+  visibility: visible !important;
+  opacity: 1 !important;
+  min-width: 195px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+  margin-top: 6px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.dropdown-menu .dropdown-item {
+  white-space: nowrap;
+}
+
+/* Items */
+.dropdown-item {
+  display: block;
+  padding: 0.75rem 1.25rem;
+  color: #212529;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #f8f9fa;
+    color: $primary-color;
+  }
+}

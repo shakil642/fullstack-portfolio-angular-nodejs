@@ -1,0 +1,45 @@
+<aside class="sidebar">
+  <div class="sidebar-profile">
+    <img src="images/profile-photo.jpg" alt="Profile" class="profile-avatar">
+    <h4 class="profile-name">{{ userName }}</h4>
+    <p class="profile-email">{{ userEmail }}</p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <button (click)="changeView('overview'); menuItemClick.emit()" class="nav-link" [class.active]="activeView === 'overview'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M13,3V9H21V3M13,21H21V11H13M3,21H11V15H3M3,13H11V3H3V13Z"/></svg>
+      <span>Overview</span>
+    </button>
+    <button (click)="changeView('projects'); menuItemClick.emit()" class="nav-link" [class.active]="activeView === 'projects'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2M18 20H6V4H13V9H18V20Z"/></svg>
+      <span>Manage Projects</span>
+    </button>
+    <button (click)="changeView('skills'); menuItemClick.emit()" class="nav-link" [class.active]="activeView === 'skills'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2A9,9 0 0,0 3,11V22L6,19L9,22L12,19L15,22L18,19L21,22V11A9,9 0 0,0 12,2M9,12A1.5,1.5 0 0,1 7.5,10.5A1.5,1.5 0 0,1 9,9A1.5,1.5 0 0,1 10.5,10.5A1.5,1.5 0 0,1 9,12M15,12A1.5,1.5 0 0,1 13.5,10.5A1.5,1.5 0 0,1 15,9A1.5,1.5 0 0,1 16.5,10.5A1.5,1.5 0 0,1 15,12Z"/></svg>
+      <span>Manage Skills</span>
+    </button>
+    <button (click)="changeView('blogs'); menuItemClick.emit()" class="nav-link" [class.active]="activeView === 'blogs'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20,11H4V4H20M20,13H4V20H20V13M19,2H5C3.89,2 3,2.89 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4C21,2.89 20.1,2 19,2Z"/></svg>
+      <span>Manage Blogs</span>
+    </button>
+    <button (click)="changeView('reviews'); menuItemClick.emit()" class="nav-link" [class.active]="activeView === 'reviews'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"/></svg>
+      <span>Manage Reviews</span>
+    </button>
+     <button (click)="changeView('messages'); menuItemClick.emit()" class="nav-link" [class.active]="activeView === 'messages'">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20,2H4A2,2 0 0,0 2,4V22L6,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2Z"/></svg>
+      <span>Manage Messages</span>
+    </button>
+  </nav>
+  
+  <div class="sidebar-footer">
+    <a routerLink="/" class="nav-link" (click)="menuItemClick.emit()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z"/></svg>
+      <span>Home</span>
+    </a>
+    <button (click)="logout(); menuItemClick.emit()" class="nav-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17,17.25V14H10V10H17V6.75L22.25,12L17,17.25M13,2A2,2 0 0,1 15,4V8H13V4H4V20H13V16H15V20A2,2 0 0,1 13,22H4A2,2 0 0,1 2,20V4A2,2 0 0,1 4,2H13Z"/></svg>
+      <span>Logout</span>
+    </button>
+  </div>
+</aside>

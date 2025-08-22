@@ -1,0 +1,11 @@
+<div *ngIf="isVisible" class="cookie-banner-container">
+  <div class="cookie-content">
+    <p class="cookie-text">
+      This website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent.
+    </p>
+    <div class="cookie-actions">
+      <button (click)="acceptCookies()" class="btn btn-primary">Accept All</button>
+      <button (click)="acceptCookies()" class="btn btn-secondary">Reject All</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div *ngIf="blogPost$ | async as post" class="post-container">
+  
+  <header class="post-header">
+    <h1 class="post-title">{{ post.title }}</h1>
+    <p class="post-meta">Published on {{ post.created_at | date: 'fullDate' }} by Shakil Ahmed</p>
+  </header>
+
+  <img [src]="post.image_url.startsWith('http') ? post.image_url : backendUrl + post.image_url" [alt]="post.title" class="post-featured-image">
+
+  <article class="post-content" [innerHTML]="post.content"></article>
+
+  <footer class="post-footer">
+    <a routerLink="/" class="back-link">&larr; Back to Portfolio</a>
+  </footer>
+
+</div>
