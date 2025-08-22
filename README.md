@@ -36,7 +36,7 @@ This repository contains the complete source code for my professional portfolio 
 
 To run this project locally, you will need two terminal windows.
 
-### Backend Setup:
+### Frontend & Backend Setup:
 ```bash
 # Navigate to the backend folder
 cd portfolio-backend
@@ -48,3 +48,12 @@ npm install
 
 # Run the server
 npm run dev
+
+# ************************************** #
+
+# Navigate to the frontend folder
+cd sk-portfolio
+
+# Run Program
+npm start
+
