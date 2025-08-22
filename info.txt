@@ -1,0 +1,22 @@
+Frontend
+----------------------------
+ng cache clean
+ng build
+ng serve
+cd sk-portfolio
+cd portfolio-backend
+ng serve --ssl --ssl-key localhost-key.pem --ssl-cert localhost.pem
+npm start
+
+Backend
+------------------------
+npm init
+npm install express pg cors dotenv
+npm install --save-dev nodemon
+npm run dev
+npm install nodemailer
+npm install multer
+
+Database
+-------------------------------
+SELECT id, title, image_url FROM projects;

@@ -1,0 +1,5 @@
+INSERT INTO projects (title, description, github_link, live_link, image_url) VALUES
+('GameFinder CRUD Application', 'A comprehensive CRUD project designed to empower users in discovering games tailored to their preferences, built with Angular and an ASP.NET backend.', '#', '#', 'project-gamefinder.png'),
+('RecycleApp Android Application', 'Enabled users to effortlessly sell unwanted accessories and buy newly recycled products, promoting sustainability through a Flutter-based mobile app.', '#', '#', 'project-recycleapp.png'),
+('Financial Impact Predictor', 'A model to mitigate the economic impact of cybercrime by analyzing historical attack data to identify recurring patterns using Python and Machine Learning.', '#', '#', 'project-predictor.png'),
+('Notice Board Panel | CityBank', 'A dynamic, user-friendly Notice Board created for both users and Admins at CityBank using Classic ASP and MS SQL.', '#', '#', 'project-noticeboard.png');
