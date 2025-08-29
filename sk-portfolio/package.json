@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "serve -s dist/sk-portfolio -l 443 --ssl $PORT --ssl-key localhost-key.pem --ssl-cert localhost.pem",
+    "start": "serve -s dist/sk-portfolio -l $PORT",
     "build": "ng build --configuration development",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
