@@ -1,0 +1,7 @@
+{
+  "root": "dist/sk-portfolio/browser",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/**", "destination": "/index.html" }
+  ]
+}
