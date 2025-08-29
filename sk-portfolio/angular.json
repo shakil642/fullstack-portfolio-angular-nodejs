@@ -18,6 +18,7 @@
           "builder": "@angular/build:application",
           "options": {
             "browser": "src/main.ts",
+            "server": "src/main.server.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -30,14 +31,21 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "server": "src/main.server.ts",
-            "prerender": false,
             "ssr": {
               "entry": "src/server.ts"
-            }
+            },
+            "prerender": false
           },
           "configurations": {
             "production": {
+              "outputHashing": "all",
+              "optimization": {
+                "scripts": true,
+                "styles": {
+                  "minify": true,
+                  "inlineCritical": false
+                }
+              },
               "budgets": [
                 {
                   "type": "initial",
@@ -49,14 +57,7 @@
                   "maximumWarning": "8kB",
                   "maximumError": "12kB"
                 }
-              ],
-              "outputHashing": "all",
-              "optimization": {
-                "styles": {
-                  "minify": true,
-                  "inlineCritical": false
-                }
-              }
+              ]
             },
             "development": {
               "optimization": false,
