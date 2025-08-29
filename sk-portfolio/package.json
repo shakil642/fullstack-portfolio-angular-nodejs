@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 ng serve --ssl --ssl-key localhost-key.pem --ssl-cert localhost.pem",
+    "start": "node dist/sk-portfolio/server/server.mjs",
+    "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 ng serve --ssl --ssl-key localhost-key.pem --ssl-cert localhost.pem",
     "build": "ng build",
+    "build:ssr": "ng build --configuration=production && ng run sk-portfolio:server",
+    "serve:ssr": "node dist/sk-portfolio/server/server.mjs",
+    "prerender": "ng run sk-portfolio:prerender",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
