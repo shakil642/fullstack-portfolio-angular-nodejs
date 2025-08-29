@@ -1,5 +1,4 @@
 import cors from 'cors';
-import express from 'express';
 
 const express = require('express');
 const path = require('path');
@@ -10,7 +9,7 @@ const port = process.env.PORT || 8080;
 app.use(express.static(path.join(__dirname, 'dist/sk-portfolio/browser')));
 
 app.use(cors({
-  origin: ["https://shakil64it.me"], 
+  origin: ["https://shakil64it.me"], // only live site
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
