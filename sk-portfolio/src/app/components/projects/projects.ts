@@ -15,7 +15,7 @@ import { environment } from '../../../environments/environment';
 export class Projects implements OnInit {
   
   // backendUrl = 'https://localhost:3000'; 
-  backendUrl = environment.apiUrl;
+  backendUrl = 'https://portfolio-backend-hbc4.onrender.com';
   // A property to hold our projects, initialized as an empty array
   projects: Project[] = [];
 

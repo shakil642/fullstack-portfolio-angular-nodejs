@@ -16,7 +16,7 @@ import { environment } from '../../../environments/environment';
 export class Blog implements OnInit {
   blogs: Partial<Blogs[]> = [];
   // backendUrl = 'https://localhost:3000'; // Base URL for images
-  backendUrl = environment.apiUrl; // Base URL for images
+  backendUrl = 'https://portfolio-backend-hbc4.onrender.com'; // Base URL for images
 
   constructor(private apiService: ApiService, private cdr: ChangeDetectorRef) {}
 

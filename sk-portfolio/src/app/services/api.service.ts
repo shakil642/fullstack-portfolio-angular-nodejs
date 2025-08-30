@@ -107,8 +107,8 @@ export interface Review {
   providedIn: 'root'
 })
 export class ApiService {
-  // private apiUrl = 'https://portfolio-backend.onrender.com/api';
-  private apiUrl = environment.apiUrl;
+  private apiUrl = 'https://portfolio-backend-hbc4.onrender.com';
+  // private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {}
 

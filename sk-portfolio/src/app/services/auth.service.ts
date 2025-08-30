@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
   // private apiUrl = 'https://localhost:3000/api/auth';
-  private apiUrl = `${environment.apiUrl}/auth`;
+  private apiUrl = environment.apiUrl + 'api/auth';
   private tokenKey = 'portfolio-auth-token';
 
   // Inject PLATFORM_ID to determine the environment

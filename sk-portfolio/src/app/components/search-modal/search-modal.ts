@@ -19,7 +19,7 @@ export class SearchModal implements OnInit, AfterViewInit, OnDestroy {
   searchForm: FormGroup;
   results$!: Observable<SearchResult[]>;
   // backendUrl = 'https://localhost:3000';
-   backendUrl = environment.apiUrl;
+   backendUrl = 'https://portfolio-backend-hbc4.onrender.com';
 
   // Internal helpers
   private manualSearch$ = new Subject<string>(); 
