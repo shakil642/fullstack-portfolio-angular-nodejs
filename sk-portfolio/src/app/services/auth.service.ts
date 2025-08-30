@@ -2,14 +2,12 @@ import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common'; // Import isPlatformBrowser
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // private apiUrl = 'https://localhost:3000/api/auth';
-  private apiUrl = environment.apiUrl + 'api/auth';
+  private apiUrl = 'https://localhost:3000/api/auth';
   private tokenKey = 'portfolio-auth-token';
 
   // Inject PLATFORM_ID to determine the environment
