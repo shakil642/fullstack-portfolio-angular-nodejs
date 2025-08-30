@@ -5,6 +5,7 @@ import { RouterLink } from '@angular/router';
 import { ApiService, SearchResult } from '../../services/api.service';
 import { Observable, Subject, merge, of, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, tap, filter, map, catchError } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-search-modal',
@@ -17,7 +18,8 @@ export class SearchModal implements OnInit, AfterViewInit, OnDestroy {
   @Output() close = new EventEmitter<void>();
   searchForm: FormGroup;
   results$!: Observable<SearchResult[]>;
-  backendUrl = 'https://localhost:3000';
+  // backendUrl = 'https://localhost:3000';
+   backendUrl = environment.apiUrl;
 
   // Internal helpers
   private manualSearch$ = new Subject<string>(); 

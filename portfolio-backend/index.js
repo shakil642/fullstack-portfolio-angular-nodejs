@@ -25,7 +25,15 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:4200',          // Angular dev
+    'https://shakil64it.me'           // Production
+  ],
+  methods: ['GET','POST','PUT','DELETE'],
+  credentials: true
+}));
+
 app.use(express.json());
 // This correctly serves your uploaded images
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));

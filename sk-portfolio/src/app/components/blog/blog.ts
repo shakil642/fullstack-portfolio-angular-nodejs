@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router'; // Import RouterLink
 import { ApiService, Blogs } from '../../services/api.service';
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll';
 import { LazyLoadDirective } from '../../directives/lazy-load';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-blog',
@@ -14,7 +15,8 @@ import { LazyLoadDirective } from '../../directives/lazy-load';
 })
 export class Blog implements OnInit {
   blogs: Partial<Blogs[]> = [];
-  backendUrl = 'https://localhost:3000'; // Base URL for images
+  // backendUrl = 'https://localhost:3000'; // Base URL for images
+  backendUrl = environment.apiUrl; // Base URL for images
 
   constructor(private apiService: ApiService, private cdr: ChangeDetectorRef) {}
 

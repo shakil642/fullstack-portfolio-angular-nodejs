@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router'; // Import ActivatedRoute
 import { ApiService, Blogs } from '../../services/api.service';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-blog-post',
@@ -14,7 +15,8 @@ import { Observable } from 'rxjs';
 export class BlogPost implements OnInit {
   // Use an Observable to handle the async data
   blogPost$!: Observable<Blogs>;
-  backendUrl = 'https://localhost:3000';
+  // backendUrl = 'https://localhost:3000';
+  backendUrl = environment.apiUrl;
 
   constructor(
     private route: ActivatedRoute, 

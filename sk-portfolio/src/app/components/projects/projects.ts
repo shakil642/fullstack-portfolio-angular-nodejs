@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ApiService, Project } from '../../services/api.service'; 
 import { AnimateOnScrollDirective } from '../../directives/animate-on-scroll';
 import { LazyLoadDirective } from '../../directives/lazy-load';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-projects',
@@ -13,7 +14,8 @@ import { LazyLoadDirective } from '../../directives/lazy-load';
 })
 export class Projects implements OnInit {
   
-  backendUrl = 'https://localhost:3000'; 
+  // backendUrl = 'https://localhost:3000'; 
+  backendUrl = environment.apiUrl;
   // A property to hold our projects, initialized as an empty array
   projects: Project[] = [];
 

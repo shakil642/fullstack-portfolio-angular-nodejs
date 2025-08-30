@@ -65,7 +65,8 @@ export const forgotPassword = async (req, res) => {
     );
 
     // 5. Create the reset URL and send the email
-    const resetURL = `https://localhost:4200/reset-password/${resetToken}`; 
+    // const resetURL = `https://localhost:4200/reset-password/${resetToken}`; 
+    const resetURL = `https://shakil64it.me/reset-password/${resetToken}`;
 
     const message = `
       <h1>You have requested a password reset</h1>
